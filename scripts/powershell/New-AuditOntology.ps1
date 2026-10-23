@@ -6,12 +6,12 @@ param(
     [string]$TenantId,
     [Alias('Name')][string]$OntologyName = 'AuditOntology',
     [switch]$BuildOnly,
-    [string]$OutputPath = (Join-Path $PSScriptRoot '..\artifacts\AuditOntology.request.json')
+    [string]$OutputPath = (Join-Path $PSScriptRoot '..\..\artifacts\AuditOntology.request.json')
 )
 $ErrorActionPreference = 'Stop'
 $workspaceId = $WorkspaceId.ToString()
 $lakehouseId = $LakehouseId.ToString()
-$root = Split-Path $PSScriptRoot -Parent
+$root = Split-Path (Split-Path $PSScriptRoot -Parent) -Parent
 $validation = Get-Content -LiteralPath (Join-Path $root 'data\expected-validation.json') -Raw | ConvertFrom-Json
 Import-Module (Join-Path $PSScriptRoot 'FabricApi.psm1') -Force
 $base = "https://api.fabric.microsoft.com/v1/workspaces/$workspaceId"

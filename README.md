@@ -27,10 +27,10 @@ The agent is a **Fabric Data Agent**, not a Microsoft Foundry agent. You do not 
 | [ontology/AuditOntology.template.json](ontology/AuditOntology.template.json) | Portable 55-part ontology request, generated with illustrative IDs. |
 | [agent/instructions.txt](agent/instructions.txt) | Complete audit instructions; no preloaded example answers. |
 | [agent/AuditDataAgent.template.json](agent/AuditDataAgent.template.json) | Draft agent request using the ontology source format exported from the working UI. |
-| [scripts/New-AuditOntology.ps1](scripts/New-AuditOntology.ps1) | Builds/imports and verifies an ontology with your actual workspace/Lakehouse IDs. |
-| [scripts/New-AuditDataAgent.ps1](scripts/New-AuditDataAgent.ps1) | Optional REST route to create and verify a draft Data Agent. |
-| [scripts/FabricApi.psm1](scripts/FabricApi.psm1) | In-memory Azure CLI authentication and Fabric long-running-operation handling. |
-| [scripts/Test-DemoPackage.ps1](scripts/Test-DemoPackage.ps1) | Offline syntax, payload, rebinding, serialization and baseline checks; no cloud calls. |
+| [scripts/powershell/New-AuditOntology.ps1](scripts/powershell/New-AuditOntology.ps1) | Builds/imports and verifies an ontology with your actual workspace/Lakehouse IDs. |
+| [scripts/powershell/New-AuditDataAgent.ps1](scripts/powershell/New-AuditDataAgent.ps1) | Optional REST route to create and verify a draft Data Agent. |
+| [scripts/powershell/FabricApi.psm1](scripts/powershell/FabricApi.psm1) | In-memory Azure CLI authentication and Fabric long-running-operation handling. |
+| [scripts/powershell/Test-DemoPackage.ps1](scripts/powershell/Test-DemoPackage.ps1) | Offline syntax, payload, rebinding, serialization and baseline checks; no cloud calls. |
 | [examples/verified-agent-results.json](examples/verified-agent-results.json) | Structured answers from the five original live agent tests. |
 | [examples/validation-queries.sql](examples/validation-queries.sql) | Independent Spark SQL checks. |
 | [docs/data-model.md](docs/data-model.md) | Entity model, data semantics and relationships. |
@@ -72,7 +72,7 @@ Follow the browser authentication prompt. This is separate from signing into the
 Optional offline check (does not require authentication):
 
 ```powershell
-.\scripts\Test-DemoPackage.ps1
+.\scripts\powershell\Test-DemoPackage.ps1
 ```
 
 ### 2. Create the workspace and Lakehouse
@@ -126,7 +126,7 @@ You may independently run [examples/validation-queries.sql](examples/validation-
 Use the REST builder to preserve the original Retail-style JSON definition:
 
 ```powershell
-.\scripts\New-AuditOntology.ps1 `
+.\scripts\powershell\New-AuditOntology.ps1 `
     -TenantId $tenantId `
     -WorkspaceId $workspaceId `
     -LakehouseId $lakehouseId `
@@ -154,7 +154,7 @@ Open AuditOntology in the workspace. Verify the 10 entity types and their bindin
 To build a request without authenticating or creating anything:
 
 ```powershell
-.\scripts\New-AuditOntology.ps1 `
+.\scripts\powershell\New-AuditOntology.ps1 `
     -WorkspaceId $workspaceId -LakehouseId $lakehouseId -BuildOnly
 ```
 
@@ -177,7 +177,7 @@ The saved configuration uses `draft/ontologies/AuditOntology/ontology.json`. The
 **Optional: create the draft through REST instead.**
 
 ```powershell
-.\scripts\New-AuditDataAgent.ps1 `
+.\scripts\powershell\New-AuditDataAgent.ps1 `
     -TenantId $tenantId `
     -WorkspaceId $workspaceId `
     -OntologyId $ontologyId

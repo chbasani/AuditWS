@@ -2,7 +2,7 @@
 [CmdletBinding()]
 param()
 $ErrorActionPreference = 'Stop'
-$root = Split-Path $PSScriptRoot -Parent
+$root = Split-Path (Split-Path $PSScriptRoot -Parent) -Parent
 function Assert([bool]$Condition, [string]$Message) {
     if (-not $Condition) { throw $Message }
 }

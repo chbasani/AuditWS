@@ -3,6 +3,9 @@
 These files recreate the **old JSON ontology experience** used by AuditOntology
 in AuditWS. They are separate from the newer TMDL helper.
 
+The PowerShell builders, shared module, and offline checks are in
+[powershell/](powershell/). Python notebooks and packages remain in this folder.
+
 | File | Purpose |
 |---|---|
 | [fabriciq_ontology_accelerator-0.1.0-py3-none-any.whl](fabriciq_ontology_accelerator-0.1.0-py3-none-any.whl) | Original, unmodified Retail accelerator wheel, including its MIT license. |
@@ -71,7 +74,7 @@ From the repository root:
 python .\scripts\Build-OldOntologyPackage.py .\scripts\fabriciq_ontology_accelerator-0.1.0-py3-none-any.whl
 python -m pip install .\scripts\fabriciq_ontology_accelerator-0.1.0-py3-none-any.whl pandas requests
 python .\scripts\Test-OldOntologyPackage.py
-pwsh -NoProfile -File .\scripts\Test-DemoPackage.ps1
+pwsh -NoProfile -File .\scripts\powershell\Test-DemoPackage.ps1
 ```
 
 Local tests exercise the actual accelerator parser and mock cloud writes. They

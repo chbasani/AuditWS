@@ -5,11 +5,11 @@ param(
     [Parameter(Mandatory)][guid]$OntologyId,
     [string]$TenantId,
     [switch]$BuildOnly,
-    [string]$OutputPath = (Join-Path $PSScriptRoot '..\artifacts\AuditDataAgent.request.json')
+    [string]$OutputPath = (Join-Path $PSScriptRoot '..\..\artifacts\AuditDataAgent.request.json')
 )
 $ErrorActionPreference = 'Stop'
 Import-Module (Join-Path $PSScriptRoot 'FabricApi.psm1') -Force
-$root = Split-Path $PSScriptRoot -Parent
+$root = Split-Path (Split-Path $PSScriptRoot -Parent) -Parent
 $validation = Get-Content -Raw -LiteralPath (Join-Path $root 'data\expected-validation.json') | ConvertFrom-Json
 $instructions = Get-Content -Raw -LiteralPath (Join-Path $root 'agent\instructions.txt')
 $entityNames = @{
