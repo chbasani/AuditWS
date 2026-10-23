@@ -1,0 +1,55 @@
+{
+  "workspace": "AuditWS",
+  "agent": "AuditDataAgent",
+  "ontology": "AuditOntology",
+  "executionDate": "2026-10-23",
+  "execution": "Five actual sequential prompts in the Fabric Data Agent draft test panel",
+  "comparison": "Compared with the independently validated Spark SQL expected_answers in data/expected-validation.json",
+  "asOfDate": "2026-10-22",
+  "currency": "USD",
+  "syntheticData": true,
+  "tests": [
+    {
+      "question": "Using AuditOntology, list all customers with RiskRating = 'High', including CustomerId and CustomerName. Query the data rather than guessing.",
+      "actualRows": [
+        {"CustomerId": "C004", "CustomerName": "Synthetic Customer 4"},
+        {"CustomerId": "C012", "CustomerName": "Synthetic Customer 12"},
+        {"CustomerId": "C008", "CustomerName": "Synthetic Customer 8"}
+      ],
+      "responseTimeSeconds": 15,
+      "passed": true
+    },
+    {
+      "question": "Using AuditOntology, for findings with Status = 'Open', group by Severity and return the finding count and sum of ExposureAmount in USD. Do not include closed findings.",
+      "actualRows": [
+        {"Severity": "High", "FindingCount": 2, "ExposureAmount": "18000.00"},
+        {"Severity": "Low", "FindingCount": 6, "ExposureAmount": "54000.00"}
+      ],
+      "responseTimeSeconds": 9,
+      "passed": true
+    },
+    {
+      "question": "Using AuditOntology, as of 2026-10-22, how many invoices are overdue and unpaid, and what is their total outstanding balance in USD? Calculate outstanding as InvoiceAmount minus the sum of payments for each invoice; filter DueDate before 2026-10-22 and positive outstanding. Avoid double counting.",
+      "actualRows": [{"OverdueInvoiceCount": 12, "OutstandingBalance": "60750.00"}],
+      "responseTimeSeconds": 17,
+      "passed": true
+    },
+    {
+      "question": "Using AuditOntology, group control tests with Result = 'Fail' by ControlId. Return the failure count and total ExceptionCount for each control.",
+      "actualRows": [{"ControlId": "CTL06", "FailedTestCount": 12, "ExceptionCount": 36}],
+      "responseTimeSeconds": 7,
+      "passed": true
+    },
+    {
+      "question": "Using AuditOntology, list open findings whose RemediationDueDate is before 2026-10-22. Include FindingId, CustomerId, Severity and ExposureAmount in USD, ordered by FindingId.",
+      "actualRows": [
+        {"FindingId": "F002", "CustomerId": "C002", "Severity": "Low", "ExposureAmount": "3000.00"},
+        {"FindingId": "F004", "CustomerId": "C004", "Severity": "High", "ExposureAmount": "6000.00"},
+        {"FindingId": "F008", "CustomerId": "C008", "Severity": "High", "ExposureAmount": "12000.00"},
+        {"FindingId": "F010", "CustomerId": "C010", "Severity": "Low", "ExposureAmount": "15000.00"}
+      ],
+      "responseTimeSeconds": 12,
+      "passed": true
+    }
+  ]
+}

@@ -1,0 +1,626 @@
+{
+  "tables": [
+    {
+      "name": "customers",
+      "rows": 12,
+      "columns": [
+        {
+          "name": "CustomerId",
+          "type": "string"
+        },
+        {
+          "name": "CustomerName",
+          "type": "string"
+        },
+        {
+          "name": "Country",
+          "type": "string"
+        },
+        {
+          "name": "RiskRating",
+          "type": "string"
+        },
+        {
+          "name": "ReportingCurrency",
+          "type": "string"
+        },
+        {
+          "name": "IsSynthetic",
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "name": "accounts",
+      "rows": 24,
+      "columns": [
+        {
+          "name": "AccountId",
+          "type": "string"
+        },
+        {
+          "name": "CustomerId",
+          "type": "string"
+        },
+        {
+          "name": "AccountType",
+          "type": "string"
+        },
+        {
+          "name": "Currency",
+          "type": "string"
+        },
+        {
+          "name": "Balance",
+          "type": "decimal(18,2)"
+        },
+        {
+          "name": "Status",
+          "type": "string"
+        },
+        {
+          "name": "IsSynthetic",
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "name": "transactions",
+      "rows": 240,
+      "columns": [
+        {
+          "name": "TransactionId",
+          "type": "string"
+        },
+        {
+          "name": "AccountId",
+          "type": "string"
+        },
+        {
+          "name": "CustomerId",
+          "type": "string"
+        },
+        {
+          "name": "TransactionDate",
+          "type": "date"
+        },
+        {
+          "name": "Amount",
+          "type": "decimal(18,2)"
+        },
+        {
+          "name": "Currency",
+          "type": "string"
+        },
+        {
+          "name": "Direction",
+          "type": "string"
+        },
+        {
+          "name": "EntryMethod",
+          "type": "string"
+        },
+        {
+          "name": "ApprovalStatus",
+          "type": "string"
+        },
+        {
+          "name": "Description",
+          "type": "string"
+        },
+        {
+          "name": "IsSynthetic",
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "name": "invoices",
+      "rows": 60,
+      "columns": [
+        {
+          "name": "InvoiceId",
+          "type": "string"
+        },
+        {
+          "name": "CustomerId",
+          "type": "string"
+        },
+        {
+          "name": "InvoiceDate",
+          "type": "date"
+        },
+        {
+          "name": "DueDate",
+          "type": "date"
+        },
+        {
+          "name": "InvoiceAmount",
+          "type": "decimal(18,2)"
+        },
+        {
+          "name": "Currency",
+          "type": "string"
+        },
+        {
+          "name": "Status",
+          "type": "string"
+        },
+        {
+          "name": "IsSynthetic",
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "name": "payments",
+      "rows": 48,
+      "columns": [
+        {
+          "name": "PaymentId",
+          "type": "string"
+        },
+        {
+          "name": "InvoiceId",
+          "type": "string"
+        },
+        {
+          "name": "CustomerId",
+          "type": "string"
+        },
+        {
+          "name": "PaymentDate",
+          "type": "date"
+        },
+        {
+          "name": "PaidAmount",
+          "type": "decimal(18,2)"
+        },
+        {
+          "name": "Currency",
+          "type": "string"
+        },
+        {
+          "name": "PaymentMethod",
+          "type": "string"
+        },
+        {
+          "name": "IsSynthetic",
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "name": "audit_engagements",
+      "rows": 12,
+      "columns": [
+        {
+          "name": "EngagementId",
+          "type": "string"
+        },
+        {
+          "name": "CustomerId",
+          "type": "string"
+        },
+        {
+          "name": "EngagementName",
+          "type": "string"
+        },
+        {
+          "name": "PeriodStart",
+          "type": "date"
+        },
+        {
+          "name": "PeriodEnd",
+          "type": "date"
+        },
+        {
+          "name": "AsOfDate",
+          "type": "date"
+        },
+        {
+          "name": "Status",
+          "type": "string"
+        },
+        {
+          "name": "LeadAuditor",
+          "type": "string"
+        },
+        {
+          "name": "IsSynthetic",
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "name": "controls",
+      "rows": 6,
+      "columns": [
+        {
+          "name": "ControlId",
+          "type": "string"
+        },
+        {
+          "name": "ControlName",
+          "type": "string"
+        },
+        {
+          "name": "ControlObjective",
+          "type": "string"
+        },
+        {
+          "name": "Frequency",
+          "type": "string"
+        },
+        {
+          "name": "ControlOwner",
+          "type": "string"
+        },
+        {
+          "name": "IsSynthetic",
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "name": "control_tests",
+      "rows": 72,
+      "columns": [
+        {
+          "name": "TestId",
+          "type": "string"
+        },
+        {
+          "name": "EngagementId",
+          "type": "string"
+        },
+        {
+          "name": "CustomerId",
+          "type": "string"
+        },
+        {
+          "name": "ControlId",
+          "type": "string"
+        },
+        {
+          "name": "TestDate",
+          "type": "date"
+        },
+        {
+          "name": "SampleSize",
+          "type": "int"
+        },
+        {
+          "name": "ExceptionCount",
+          "type": "int"
+        },
+        {
+          "name": "Result",
+          "type": "string"
+        },
+        {
+          "name": "IsSynthetic",
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "name": "findings",
+      "rows": 12,
+      "columns": [
+        {
+          "name": "FindingId",
+          "type": "string"
+        },
+        {
+          "name": "TestId",
+          "type": "string"
+        },
+        {
+          "name": "EngagementId",
+          "type": "string"
+        },
+        {
+          "name": "CustomerId",
+          "type": "string"
+        },
+        {
+          "name": "ControlId",
+          "type": "string"
+        },
+        {
+          "name": "FindingTitle",
+          "type": "string"
+        },
+        {
+          "name": "Severity",
+          "type": "string"
+        },
+        {
+          "name": "Status",
+          "type": "string"
+        },
+        {
+          "name": "ExposureAmount",
+          "type": "decimal(18,2)"
+        },
+        {
+          "name": "Currency",
+          "type": "string"
+        },
+        {
+          "name": "IdentifiedDate",
+          "type": "date"
+        },
+        {
+          "name": "RemediationDueDate",
+          "type": "date"
+        },
+        {
+          "name": "ClosedDate",
+          "type": "date"
+        },
+        {
+          "name": "RemediationOwner",
+          "type": "string"
+        },
+        {
+          "name": "IsSynthetic",
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "name": "evidence_documents",
+      "rows": 24,
+      "columns": [
+        {
+          "name": "EvidenceId",
+          "type": "string"
+        },
+        {
+          "name": "EngagementId",
+          "type": "string"
+        },
+        {
+          "name": "FindingId",
+          "type": "string"
+        },
+        {
+          "name": "CustomerId",
+          "type": "string"
+        },
+        {
+          "name": "DocumentTitle",
+          "type": "string"
+        },
+        {
+          "name": "DocumentType",
+          "type": "string"
+        },
+        {
+          "name": "VerificationStatus",
+          "type": "string"
+        },
+        {
+          "name": "CollectedDate",
+          "type": "date"
+        },
+        {
+          "name": "Classification",
+          "type": "string"
+        },
+        {
+          "name": "IsSynthetic",
+          "type": "boolean"
+        }
+      ]
+    }
+  ],
+  "relationships": [
+    [
+      "accounts",
+      "AccountId",
+      "CustomerId",
+      "customers",
+      "CustomerId",
+      "AccountBelongsToCustomer"
+    ],
+    [
+      "transactions",
+      "TransactionId",
+      "AccountId",
+      "accounts",
+      "AccountId",
+      "TransactionPostedToAccount"
+    ],
+    [
+      "transactions",
+      "TransactionId",
+      "CustomerId",
+      "customers",
+      "CustomerId",
+      "TransactionForCustomer"
+    ],
+    [
+      "invoices",
+      "InvoiceId",
+      "CustomerId",
+      "customers",
+      "CustomerId",
+      "InvoiceForCustomer"
+    ],
+    [
+      "payments",
+      "PaymentId",
+      "InvoiceId",
+      "invoices",
+      "InvoiceId",
+      "PaymentSettlesInvoice"
+    ],
+    [
+      "payments",
+      "PaymentId",
+      "CustomerId",
+      "customers",
+      "CustomerId",
+      "PaymentFromCustomer"
+    ],
+    [
+      "audit_engagements",
+      "EngagementId",
+      "CustomerId",
+      "customers",
+      "CustomerId",
+      "EngagementAuditsCustomer"
+    ],
+    [
+      "control_tests",
+      "TestId",
+      "EngagementId",
+      "audit_engagements",
+      "EngagementId",
+      "TestInEngagement"
+    ],
+    [
+      "control_tests",
+      "TestId",
+      "ControlId",
+      "controls",
+      "ControlId",
+      "TestEvaluatesControl"
+    ],
+    [
+      "control_tests",
+      "TestId",
+      "CustomerId",
+      "customers",
+      "CustomerId",
+      "TestForCustomer"
+    ],
+    [
+      "findings",
+      "FindingId",
+      "TestId",
+      "control_tests",
+      "TestId",
+      "FindingFromTest"
+    ],
+    [
+      "findings",
+      "FindingId",
+      "EngagementId",
+      "audit_engagements",
+      "EngagementId",
+      "FindingInEngagement"
+    ],
+    [
+      "findings",
+      "FindingId",
+      "CustomerId",
+      "customers",
+      "CustomerId",
+      "FindingForCustomer"
+    ],
+    [
+      "findings",
+      "FindingId",
+      "ControlId",
+      "controls",
+      "ControlId",
+      "FindingForControl"
+    ],
+    [
+      "evidence_documents",
+      "EvidenceId",
+      "EngagementId",
+      "audit_engagements",
+      "EngagementId",
+      "EvidenceForEngagement"
+    ],
+    [
+      "evidence_documents",
+      "EvidenceId",
+      "FindingId",
+      "findings",
+      "FindingId",
+      "EvidenceSupportsFinding"
+    ],
+    [
+      "evidence_documents",
+      "EvidenceId",
+      "CustomerId",
+      "customers",
+      "CustomerId",
+      "EvidenceForCustomer"
+    ]
+  ],
+  "expected_answers": {
+    "high_risk_customers": [
+      {
+        "CustomerId": "C004",
+        "CustomerName": "Synthetic Customer 4"
+      },
+      {
+        "CustomerId": "C008",
+        "CustomerName": "Synthetic Customer 8"
+      },
+      {
+        "CustomerId": "C012",
+        "CustomerName": "Synthetic Customer 12"
+      }
+    ],
+    "open_findings_by_severity": [
+      {
+        "Severity": "High",
+        "FindingCount": 2,
+        "ExposureUSD": "18000.00"
+      },
+      {
+        "Severity": "Low",
+        "FindingCount": 6,
+        "ExposureUSD": "54000.00"
+      }
+    ],
+    "overdue_unpaid_invoices": [
+      {
+        "InvoiceCount": 12,
+        "OutstandingUSD": "60750.00"
+      }
+    ],
+    "failed_control_tests": [
+      {
+        "ControlId": "CTL06",
+        "FailedTests": 12,
+        "Exceptions": 36
+      }
+    ],
+    "overdue_remediation": [
+      {
+        "FindingId": "F002",
+        "CustomerId": "C002",
+        "Severity": "Low",
+        "ExposureAmount": "3000.00"
+      },
+      {
+        "FindingId": "F004",
+        "CustomerId": "C004",
+        "Severity": "High",
+        "ExposureAmount": "6000.00"
+      },
+      {
+        "FindingId": "F008",
+        "CustomerId": "C008",
+        "Severity": "High",
+        "ExposureAmount": "12000.00"
+      },
+      {
+        "FindingId": "F010",
+        "CustomerId": "C010",
+        "Severity": "Low",
+        "ExposureAmount": "15000.00"
+      }
+    ]
+  },
+  "validation": "10 tables persisted; exact data, unique primary keys and all 17 foreign keys validated"
+}
