@@ -19,6 +19,8 @@ The PowerShell builders, shared module, and offline checks are in
 
 ## Step by step in Fabric
 
+A lakehouse 'auditdata' is created first and place the .whl and .iq files in that 'file' location of this lake house.  Execute the Generate_ontology_Data.ipynb and Create_ontology_from_package.ipynb in sequence with 'auditdata' tagged to this notebooks and run all. This should create a demo Ontology for Audit purpose. 
+
 1. Open **AuditWS** and its schema-enabled **auditdata** Lakehouse.
 2. Download the `.whl` and `.iq` above and upload both into **auditdata → Files**
    at the root, preserving their filenames. Do not use the new-experience wheel.
